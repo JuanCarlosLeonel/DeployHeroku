@@ -62,6 +62,7 @@ def convidadoPedido(request, data):
     print('COOKIES:', request.COOKIES)
     name = data['form']['name']
     email = data['form']['email']
+    password = data['form']['password']
 
     cookieData = cookieCart(request)
     items = cookieData['items']
@@ -69,6 +70,7 @@ def convidadoPedido(request, data):
     cliente, created = Cliente.objects.get_or_create(
         email=email,
         )
+    cliente.password = password
     cliente.name = name
     cliente.save()
 
